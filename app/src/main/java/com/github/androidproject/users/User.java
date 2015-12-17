@@ -31,6 +31,6 @@ public abstract class User {
     }
 
     public void to(Group group){
-
+        group.addUser(this);
     }
 }
