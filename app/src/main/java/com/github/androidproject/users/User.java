@@ -1,10 +1,12 @@
 package com.github.androidproject.users;
 
 
+import com.github.androidproject.message.Message;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class User {
+public abstract class User{
     protected String name;
     protected List<Group> groups;
 
@@ -30,7 +32,10 @@ public abstract class User {
         this.name = name;
     }
 
-    public void to(Group group){
+
+    public void to(Group group) {
         group.addUser(this);
     }
+
+    abstract Message sendMessage(Message message);
 }

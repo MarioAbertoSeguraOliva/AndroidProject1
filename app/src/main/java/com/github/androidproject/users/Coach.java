@@ -1,8 +1,15 @@
 package com.github.androidproject.users;
 
-public class Coach extends User {
+import com.github.androidproject.message.Message;
+
+public class Coach extends User implements UserEdition {
     public Coach(String name) {
         super(name);
+    }
+
+    @Override
+    Message sendMessage(Message message) {
+        return message;
     }
 
     public Group createGroup(String name) {
@@ -11,8 +18,7 @@ public class Coach extends User {
         return group;
     }
 
-    public User addUser(Athlete athlete) {
-        return athlete;
+    public User addUser(User user) {
+        return user;
     }
-
 }
