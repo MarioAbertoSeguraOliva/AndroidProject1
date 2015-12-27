@@ -62,4 +62,23 @@ public class Coach_ {
         juan.changeGroupName(group).to("EII");
         assertThat(group.name(), is("EII"));
     }
+
+    @Test
+    public void can_remove_groups() throws Exception {
+        Coach juan = new Coach("Juan");
+        Coach alberto = new Coach("Alberto");
+        Group group = juan.createGroup("EveCan");
+        Group group2 = alberto.createGroup("Los PUMAS");
+
+        assertThat(juan.groups().size(), is(1));
+
+        juan.deleteGroup(group);
+        assertThat(juan.groups().size(), is(0));
+
+        juan.deleteGroup(group2);
+        assertThat(alberto.groups().size(), is(1));
+
+        alberto.deleteGroup(group2);
+        assertThat(alberto.groups().size(), is(0));
+    }
 }
