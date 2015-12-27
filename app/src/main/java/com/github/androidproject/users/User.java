@@ -40,6 +40,10 @@ public abstract class User{
     }
 
     public void from(Group group) {
+        leaves(group);
+    }
+
+    public void leaves(Group group) {
         group.users().remove(this);
         this.groups().remove(group);
     }

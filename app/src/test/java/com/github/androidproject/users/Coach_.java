@@ -66,6 +66,19 @@ public class Coach_ {
     }
 
     @Test
+    public void can_leave_from_the_group() throws Exception {
+        Coach coach = new Coach("Mario");
+        Group group = coach.createGroup("kirbyMakers");
+        Athlete athlete = new Athlete("Yonay");
+
+        coach.addUser(athlete).to(group);
+        coach.leaves(group);
+
+        assertThat(group.users().size(), is(1));
+        assertThat(group.users().contains(athlete), is(true));
+    }
+
+    @Test
     public void should_invite_users_to_groups() throws Exception {
         Coach juan = new Coach("Juan");
         Group evecan = juan.createGroup("EveCan");

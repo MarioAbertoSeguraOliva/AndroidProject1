@@ -1,5 +1,6 @@
 package com.github.androidproject.users;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -19,7 +20,17 @@ public class Athlete_ {
         assertThat(athlete.name(), is("Angelo"));
     }
 
+    @Test
+    public void can_leave_from_the_group() throws Exception {
+        Coach coach = new Coach("Mario");
+        Group group = coach.createGroup("kirbyMakers");
+        Athlete athlete = new Athlete("Yonay");
 
+        coach.addUser(athlete).to(group);
+        athlete.leaves(group);
 
+        assertThat(group.users().size(), is(1));
+        assertThat(group.users().contains(coach), is(true));
+    }
 
 }
