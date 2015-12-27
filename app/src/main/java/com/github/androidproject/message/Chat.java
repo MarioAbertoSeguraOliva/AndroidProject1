@@ -1,23 +1,22 @@
 package com.github.androidproject.message;
 
 import com.github.androidproject.users.Message;
-import com.github.androidproject.users.User;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Chat {
-    private Map<User, String> messages;
+    private List<Message> messages;
 
     public Chat() {
-        messages = new HashMap<>();
+        messages = new ArrayList<>();
     }
 
-    public Map<User, String> messages() {
+    public List<Message> messages() {
         return this.messages;
     }
 
     public void sendMessage(Message message) {
-        messages.put(message.sender(), message.content());
+        messages.add(message);
     }
 }

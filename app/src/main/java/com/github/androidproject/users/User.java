@@ -1,5 +1,4 @@
 package com.github.androidproject.users;
-import com.github.androidproject.message.Chat;
 
 import java.util.ArrayList;
 import java.util.List;
