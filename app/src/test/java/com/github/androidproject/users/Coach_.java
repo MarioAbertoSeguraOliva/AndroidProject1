@@ -14,7 +14,7 @@ public class Coach_ {
         Group evecan = juan.createGroup("EveCan");
         assertThat(evecan.users().size(), is(1));
         //Athlete pepe = new Athlete("Pepe");
-        //juan.addUser(pepe).to(evecan);
+        //Group prueba = pepe.createGroup("Prueba");
     }
 
     @Test
@@ -23,9 +23,14 @@ public class Coach_ {
         Group evecan = juan.createGroup("EveCan");
         Athlete pepe = new Athlete("Pepe");
         Coach marcos = new Coach("Marcos");
+        Athlete pepe2 = new Athlete("Pepe");
         juan.addUser(pepe).to(evecan);
         juan.addUser(marcos).to(evecan);
         assertThat(evecan.users().size(), is(3));
+        juan.addUser(pepe).to(evecan);
+        assertThat(evecan.users().size(), is(3));
+        juan.addUser(pepe2).to(evecan);
+        assertThat(evecan.users().size(), is(4));
     }
 
     @Test
