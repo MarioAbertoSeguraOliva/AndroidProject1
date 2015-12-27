@@ -16,4 +16,8 @@ public class Coach extends User implements UserEdition {
     public User addUser(User user) {
         return user;
     }
+
+    public Group changeGroupName(Group group) {
+        return group;
+    }
 }

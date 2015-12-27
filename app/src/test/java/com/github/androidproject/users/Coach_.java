@@ -55,5 +55,11 @@ public class Coach_ {
         assertThat(group.chat().messages().get(1).content(), is("¿Qué tal todo?"));
     }
 
-
+    @Test
+    public void should_change_group_name() throws Exception {
+        Coach juan = new Coach("Juan");
+        Group group = juan.createGroup("EveCan");
+        juan.changeGroupName(group).to("EII");
+        assertThat(group.name(), is("EII"));
+    }
 }
