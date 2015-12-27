@@ -1,15 +1,10 @@
 package com.github.androidproject.users;
 
-import com.github.androidproject.message.Message;
+import com.github.androidproject.message.Chat;
 
 public class Coach extends User implements UserEdition {
     public Coach(String name) {
         super(name);
-    }
-
-    @Override
-    Message sendMessage(Message message) {
-        return message;
     }
 
     public Group createGroup(String name) {

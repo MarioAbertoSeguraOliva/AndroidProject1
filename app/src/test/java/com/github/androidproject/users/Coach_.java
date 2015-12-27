@@ -1,6 +1,6 @@
 package com.github.androidproject.users;
 
-import com.github.androidproject.message.Message;
+import com.github.androidproject.message.Chat;
 
 import org.junit.Test;
 
@@ -36,13 +36,14 @@ public class Coach_ {
     @Test
     public void should_send_messages_to_group() throws Exception {
         Coach juan = new Coach("Juan");
-        Group evecan = juan.createGroup("EveCan");
+        Group group = juan.createGroup("EveCan");
         Athlete pepe = new Athlete("Pepe");
-        juan.addUser(pepe).to(evecan);
-        Message message = new Message("This is the training....");
-        juan.sendMessage(message).to(evecan);
-        assertThat(evecan.users().size(), is(2));
-        assertThat(evecan.messages().size(), is(1));
+        juan.addUser(pepe).to(group);
+        juan.sendMessage("Hola Pepe").to(group.chat());
+
+        assertThat(group.users().size(), is(2));
+        assertThat(group.chat().messages().size(), is(1));
+        assertThat(group.chat().messages().get(juan), is("Hola Pepe"));
     }
 
 

@@ -1,7 +1,5 @@
 package com.github.androidproject.users;
-
-
-import com.github.androidproject.message.Message;
+import com.github.androidproject.message.Chat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,5 +35,8 @@ public abstract class User{
         group.addUser(this);
     }
 
-    abstract Message sendMessage(Message message);
+    public Message sendMessage(String message){
+        return new Message(this, message);
+    }
+
 }
