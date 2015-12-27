@@ -6,6 +6,7 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Coach_ {
@@ -18,24 +19,6 @@ public class Coach_ {
         //Group prueba = pepe.createGroup("Prueba");
     }
 
-    @Test
-    public void should_invite_users_to_groups() throws Exception {
-        Coach juan = new Coach("Juan");
-        Group evecan = juan.createGroup("EveCan");
-        Athlete pepe = new Athlete("Pepe");
-        Coach marcos = new Coach("Marcos");
-        Athlete pepe2 = new Athlete("Pepe");
-
-        juan.addUser(pepe).to(evecan);
-        juan.addUser(marcos).to(evecan);
-        assertThat(evecan.users().size(), is(3));
-
-        juan.addUser(pepe).to(evecan);
-        assertThat(evecan.users().size(), is(3));
-
-        juan.addUser(pepe2).to(evecan);
-        assertThat(evecan.users().size(), is(4));
-    }
 
     @Test
     public void should_send_messages_to_group() throws Exception {
@@ -80,5 +63,42 @@ public class Coach_ {
 
         alberto.deleteGroup(group2);
         assertThat(alberto.groups().size(), is(0));
+    }
+
+    @Test
+    public void should_invite_users_to_groups() throws Exception {
+        Coach juan = new Coach("Juan");
+        Group evecan = juan.createGroup("EveCan");
+        Athlete pepe = new Athlete("Pepe");
+        Coach marcos = new Coach("Marcos");
+        Athlete pepe2 = new Athlete("Pepe");
+
+        juan.addUser(pepe).to(evecan);
+        juan.addUser(marcos).to(evecan);
+        assertThat(evecan.users().size(), is(3));
+
+        juan.addUser(pepe).to(evecan);
+        assertThat(evecan.users().size(), is(3));
+
+        juan.addUser(pepe2).to(evecan);
+        assertThat(evecan.users().size(), is(4));
+    }
+
+    @Test
+    public void can_remove_users_from_a_group() throws Exception {
+        Coach juan = new Coach("Juan");
+        Group group = juan.createGroup("EveCan");
+        Athlete pepe = new Athlete("pepe");
+
+        juan.addUser(pepe).to(group);
+        assertThat(group.users().size(), is(2));
+        assertThat(group.users().contains(pepe), is(true));
+        assertThat(pepe.groups().size(), is(1));
+        assertThat(pepe.groups().get(0), is(group));
+
+        juan.removeUser(pepe).from(group);
+        assertThat(group.users().size(), is(1));
+        assertThat(group.users().contains(pepe), is(false));
+        assertThat(pepe.groups().size(), is(0));
     }
 }

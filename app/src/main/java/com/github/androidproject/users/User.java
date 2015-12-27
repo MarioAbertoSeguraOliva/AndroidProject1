@@ -32,10 +32,15 @@ public abstract class User{
 
     public void to(Group group) {
         group.addUser(this);
+        groups.add(group);
     }
 
     public Message sendMessage(String message){
         return new Message(this, message);
     }
 
+    public void from(Group group) {
+        group.users().remove(this);
+        this.groups().remove(group);
+    }
 }

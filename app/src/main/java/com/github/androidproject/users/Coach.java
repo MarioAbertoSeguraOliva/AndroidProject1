@@ -25,4 +25,8 @@ public class Coach extends User implements UserEdition {
         if (super.groups().contains(group)) super.groups().remove(group);
         else System.out.println("No perteneces a este grupo");
     }
+
+    public User removeUser(User user) {
+        return user;
+    }
 }
